@@ -12,6 +12,9 @@ test_package.py
 build/
 dist/
 
+# __pycache__
+__pycache__/
+
 # Package info
 mk8dx_table_reader.egg-info/
 

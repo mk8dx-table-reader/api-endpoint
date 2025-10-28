@@ -12,12 +12,13 @@ A FastAPI-based web API for extracting player names and scores from Mario Kart 8
 
 ## Installation
 
+This will install all dependencies including the API requirements.
+
 ### Install from requirements.txt
 
 ```bash
 pip install -r requirements.txt
 ```
-This will install all dependencies including the API requirements.
 
 ## Running the API Server
 
