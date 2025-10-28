@@ -8,6 +8,10 @@ test_img2.png
 test_img3.png
 test_package.py
 
+# Development Environments
+venv
+.venv
+
 # Build directories
 build/
 dist/
