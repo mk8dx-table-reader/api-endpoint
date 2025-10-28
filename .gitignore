@@ -1,0 +1,31 @@
+# Root level files
+README copy.md
+README.md
+regenPackage.sh
+setup.py
+test_img.png
+test_img2.png
+test_img3.png
+test_package.py
+
+# Build directories
+build/
+dist/
+
+# Package info
+mk8dx_table_reader.egg-info/
+
+# Source package
+mk8dx_table_reader/
+mk8dx_table_reader/__init__.py
+mk8dx_table_reader/error_handling.py
+mk8dx_table_reader/fullreader.py
+mk8dx_table_reader/kerasUseModelScores.py
+mk8dx_table_reader/table_img_generation.py
+mk8dx_table_reader/yoloUseModelPlayers.py
+mk8dx_table_reader/yoloUseModelTable.py
+mk8dx_table_reader/__pycache__/
+mk8dx_table_reader/models/__init__.py
+mk8dx_table_reader/models/detectPlayers.pt
+mk8dx_table_reader/models/detectTable.pt
+mk8dx_table_reader/models/number_recognition_model.onnx
