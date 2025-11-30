@@ -2,7 +2,7 @@
 # Install with: pip install -r requirements.txt
 
 # Core dependencies (table reader package)
-mk8dx-table-reader==0.6.3
+mk8dx-table-reader==0.6.4
 
 # Dependencies from mk8dx-table-reader:
 #pillow>=10.0.0
