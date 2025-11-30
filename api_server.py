@@ -12,6 +12,7 @@ from PIL import Image
 import io
 from typing import Optional, List
 import logging
+import warnings
 
 # Import the Fullreader from your package
 from mk8dx_table_reader.fullreader import Fullreader
@@ -20,7 +21,7 @@ from mk8dx_table_reader.fullreader import Fullreader
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-VERSION = "1.1.0"
+VERSION = "1.1.1"
 
 # Create FastAPI app
 app = FastAPI(
@@ -54,7 +55,6 @@ async def startup_event():
         logger.error(f"Failed to load models: {e}")
         raise
 
-
 @app.get("/")
 async def root():
     """Health check endpoint"""
@@ -72,7 +72,7 @@ async def health_check():
 
 
 @app.post("/api/v1/read-table")
-async def read_table(file: UploadFile = File(...), teams: str = "FFA"):
+async def read_table(file: UploadFile = File(...), score_error_exceptions: bool = False):
     """
     Upload an image and extract player names and scores
 
@@ -100,7 +100,13 @@ async def read_table(file: UploadFile = File(...), teams: str = "FFA"):
         logger.info(f"Processing image: {file.filename}")
 
         # Process the image using Fullreader
-        result = fullreader.fullOCR(image, teams=teams)
+        list_warnings = []
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            result = fullreader.fullOCR(image, score_error_exceptions=score_error_exceptions)
+            for warning in w:
+                list_warnings.append(str(warning.message))
+        
 
         if result is None:
             raise HTTPException(
@@ -117,8 +123,8 @@ async def read_table(file: UploadFile = File(...), teams: str = "FFA"):
 
         return {
             "success": True,
+            "warnings": list_warnings if 'list_warnings' in locals() else False,
             "table_detected": True,
-            "team_mode": teams,
             "player_count": len(players),
             "players": players,
         }

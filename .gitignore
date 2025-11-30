@@ -7,11 +7,11 @@ test_img.png
 test_img2.png
 test_img3.png
 test_package.py
-
+.vscode/*
 # Development Environments
 venv
 .venv
-
+mk8dx_table_reader
 # Build directories
 build/
 dist/
